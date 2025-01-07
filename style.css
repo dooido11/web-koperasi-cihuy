@@ -1,0 +1,86 @@
+/* Reset styling untuk margin dan padding default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(145, 21, 114);
+    color: #333;
+}
+
+header {
+    text-align: center;
+    background-color: #da1717;;
+    color: white;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #FFD700;
+    border-bottom: 2px solid #FFD700;
+}
+#steps, #features, #contact {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#steps h2, #features h2, #contact h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+.feature {
+    padding: 15px;
+    background-color: #e0f2f1;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #d12424; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e20b0b;;
+}
+
+

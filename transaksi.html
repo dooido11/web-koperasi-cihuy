@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simpanan dan Pinjaman</title>
+    
+</head>
+<style>
+/* Style dasar untuk website */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(219, 78, 13);
+}
+
+header {
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color: #189b4f;
+    color: rgb(203, 253, 21);
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+h2 {
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 5px 0;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #ee2323;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d69494;
+}
+</style>
+
+<body>
+    <header>
+        <h1>Simpan pinjam </h1>
+        <p>Central Big Bank</p>
+    </header>
+      
+    <div class="container">
+        <section id="simpanan">
+            <h2>Form Simpanan</h2>
+            <form id="simpananForm">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" required>
+
+                <label for="jumlahSimpanan">Jumlah Simpanan:</label>
+                <input type="number" id="jumlahSimpanan" required>
+
+                <button type="submit">Simpan</button>
+            </form>
+            <div id="simpananStatus"></div>
+        </section>
+          
+        <section id="pinjaman">
+            <h2>Form Pinjaman</h2>
+            <form id="pinjamanForm">
+                <label for="namaPinjaman">Nama:</label>
+                <input type="text" id="namaPinjaman" required>
+
+                <label for="jumlahPinjaman">Jumlah Pinjaman:</label>
+                <input type="number" id="jumlahPinjaman" required>
+
+                <button type="submit">Pinjam</button>
+            </form>
+            <div id="pinjamanStatus"></div>
+        </section>
+    </div>
+
+<script>
+    // Simpanan
+const simpananForm = document.getElementById('simpananForm');
+const simpananStatus = document.getElementById('simpananStatus');
+
+// Pinjaman
+const pinjamanForm = document.getElementById('pinjamanForm');
+const pinjamanStatus = document.getElementById('pinjamanStatus');
+
+let totalSimpanan = 0;
+let totalPinjaman = 0;
+
+// Event listener untuk simpanan
+simpananForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const nama = document.getElementById('nama').value;
+    const jumlahSimpanan = parseFloat(document.getElementById('jumlahSimpanan').value);
+    
+    if (isNaN(jumlahSimpanan) || jumlahSimpanan <= 0) {
+        alert('Jumlah simpanan tidak valid!');
+        return;
+    }
+
+    totalSimpanan += jumlahSimpanan;
+    
+    simpananStatus.innerHTML = ${nama} telah menyimpan sejumlah Rp${jumlahSimpanan.toLocaleString()} (Total simpanan: Rp${totalSimpanan.toLocaleString()});
+    simpananForm.reset();
+});
+
+// Event listener untuk pinjaman
+pinjamanForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const namaPinjaman = document.getElementById('namaPinjaman').value;
+    const jumlahPinjaman = parseFloat(document.getElementById('jumlahPinjaman').value);
+    
+    if (isNaN(jumlahPinjaman) || jumlahPinjaman <= 0) {
+        alert('Jumlah pinjaman tidak valid!');
+        return;
+    }
+
+    if (jumlahPinjaman > totalSimpanan) {
+        pinjamanStatus.innerHTML = Maaf, ${namaPinjaman}, jumlah pinjaman melebihi total simpanan yang tersedia.;
+    } else {
+        totalPinjaman += jumlahPinjaman;
+        pinjamanStatus.innerHTML = ${namaPinjaman} berhasil meminjam Rp${jumlahPinjaman.toLocaleString()} (Total pinjaman: Rp${totalPinjaman.toLocaleString()});
+    }
+    
+    pinjamanForm.reset();
+});
+</script>
+</body>
+</html>
